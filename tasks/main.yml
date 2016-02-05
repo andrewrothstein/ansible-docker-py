@@ -1,7 +1,7 @@
 ---
 - name: (Debian) python packages...
   when: ansible_os_family == 'Debian'
-  apt: name={{item}} state=latest
+  package: name={{item}} state=present
   with_items:
     - python
     - python-dev
@@ -9,7 +9,7 @@
 
 - name: (RedHat) python packages...
   when: ansible_os_family == 'RedHat'
-  yum: name={{item}} state=latest
+  package: name={{item}} state=present
   with_items:
     - python
     - python-devel
