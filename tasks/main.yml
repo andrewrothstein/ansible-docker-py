@@ -19,7 +19,7 @@
 # silliness for docker-py
 - name: (RedHat) purge docker-python package
   when: ansible_os_family == 'RedHat'
-  yum: name=docker-python state=absent
+  package: name=docker-python state=absent
     
 - name: installing docker-py via pip
   pip: state=present name='{{item}}'
