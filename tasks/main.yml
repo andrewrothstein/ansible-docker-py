@@ -1,5 +1,7 @@
 ---
 - name: (Debian) python packages...
+  become: yes
+  become_user: root
   when: ansible_os_family == 'Debian'
   package: name={{item}} state=present
   with_items:
@@ -8,6 +10,8 @@
     - python-pip
 
 - name: (RedHat) python packages...
+  become: yes
+  become_user: root
   when: ansible_os_family == 'RedHat'
   package: name={{item}} state=present
   with_items:
@@ -18,10 +22,14 @@
 # https://blog.confirm.ch/docker-ansible-on-rhel-centos-7/
 # silliness for docker-py
 - name: (RedHat) purge docker-python package
+  become: yes
+  become_user: root
   when: ansible_os_family == 'RedHat'
   package: name=docker-python state=absent
     
 - name: installing docker-py via pip
+  become: yes
+  become_user: root
   pip: state=present name='{{item}}'
   with_items:
     - docker-py>=1.8.1
