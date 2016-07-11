@@ -1,0 +1,6 @@
+---
+docker_py_pkgs:
+  - python-devel
+
+docker_py_purge :
+  - docker-python

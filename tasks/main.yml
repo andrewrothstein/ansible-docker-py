@@ -1,31 +1,32 @@
 ---
-- name: (Debian) python packages...
+- name: resolve platform specific vars
+  include_vars: "{{item}}"
+  with_first_found:
+    - "{{ansible_distribution}}-{{ansible_distribution_release}}.yml"
+    - "{{ansible_distribution}}.yml"
+    - "{{ansible_os_family}}.yml"
+
+- name: install python
   become: yes
   become_user: root
-  when: ansible_os_family == 'Debian'
   package: name={{item}} state=present
   with_items:
     - python
-    - python-dev
     - python-pip
 
-- name: (RedHat) python packages...
+- name: install python development packages
   become: yes
   become_user: root
-  when: ansible_os_family == 'RedHat'
   package: name={{item}} state=present
-  with_items:
-    - python
-    - python-devel
-    - python-pip
+  with_items: '{{docker_py_pkgs}}'
 
 # https://blog.confirm.ch/docker-ansible-on-rhel-centos-7/
 # silliness for docker-py
 - name: (RedHat) purge docker-python package
   become: yes
   become_user: root
-  when: ansible_os_family == 'RedHat'
-  package: name=docker-python state=absent
+  with_items: '{{docker_py_purge}}'
+  package: name={{item}} state=absent
     
 - name: installing docker-py via pip
   become: yes
