@@ -16,9 +16,12 @@ galaxy_info:
     - name: Ubuntu
       versions:
         - trusty
+        - xenial
 
   galaxy_tags:
     - development
 
-dependencies: []
+dependencies:
+  - role: andrewrothstein.python
+    version: v1.0.1
   

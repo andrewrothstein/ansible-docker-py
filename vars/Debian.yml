@@ -1,4 +1,2 @@
 ---
-docker_py_pkgs:
-  - python-dev
 docker_py_purge: []

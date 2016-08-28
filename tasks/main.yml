@@ -6,20 +6,6 @@
     - "{{ansible_distribution}}.yml"
     - "{{ansible_os_family}}.yml"
 
-- name: install python
-  become: yes
-  become_user: root
-  package: name={{item}} state=present
-  with_items:
-    - python
-    - python-pip
-
-- name: install python development packages
-  become: yes
-  become_user: root
-  package: name={{item}} state=present
-  with_items: '{{docker_py_pkgs}}'
-
 # https://blog.confirm.ch/docker-ansible-on-rhel-centos-7/
 # silliness for docker-py
 - name: (RedHat) purge docker-python package
