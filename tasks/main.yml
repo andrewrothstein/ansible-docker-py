@@ -1,11 +1,11 @@
 ---
 - name: resolve platform specific vars
-  include_vars: "{{item}}"
+  include_vars: "{{ item }}"
   with_first_found:
     - files:
-      - "{{ansible_distribution}}-{{ansible_distribution_release}}.yml"
-      - "{{ansible_distribution}}.yml"
-      - "{{ansible_os_family}}.yml"
+      - "{{ ansible_distribution }}-{{ ansible_distribution_release }}.yml"
+      - "{{ ansible_distribution }}.yml"
+      - "{{ ansible_os_family }}.yml"
       skip: true
 
 # https://blog.confirm.ch/docker-ansible-on-rhel-centos-7/
@@ -13,11 +13,11 @@
 - name: purge docker-python package if present...
   become: yes
   become_user: root
-  with_items: '{{docker_py_purge|default([])}}'
+  with_items: '{{ docker_py_purge|default([]) }}'
   package:
-    name: '{{item}}'
+    name: '{{ item }}'
     state: absent
-    
+
 - name: installing docker-py via pip
   become: yes
   become_user: root
@@ -25,5 +25,5 @@
     - docker-py>=1.8.1
     - six>=1.4.0
   pip:
-    name: '{{item}}'
+    name: '{{ item }}'
     state: present
