@@ -1,12 +1,14 @@
 ---
 - name: resolve platform specific vars
-  include_vars: "{{ item }}"
+  include_vars: '{{item}}'
   with_first_found:
     - files:
-      - "{{ ansible_distribution }}-{{ ansible_distribution_release }}.yml"
-      - "{{ ansible_distribution }}.yml"
-      - "{{ ansible_os_family }}.yml"
+        - '{{ansible_distribution}}-{{ansible_distribution_release}}.yml'
+        - '{{ansible_distribution}}.yml'
+        - '{{ansible_os_family}}.yml'
       skip: true
+      paths:
+        - '{{role_path}}/vars'
 
 # https://blog.confirm.ch/docker-ansible-on-rhel-centos-7/
 # silliness for docker-py
@@ -22,8 +24,7 @@
   become: yes
   become_user: root
   with_items:
-    - docker-py>=1.8.1
-    - six>=1.4.0
+    - docker
   pip:
     name: '{{ item }}'
     state: present
