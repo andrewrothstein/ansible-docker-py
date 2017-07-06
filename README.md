@@ -1,5 +1,6 @@
 andrewrothstein.docker-py
 ===========================
+[![Build Status](https://travis-ci.org/andrewrothstein/ansible-docker-py.svg?branch=master)](https://travis-ci.org/andrewrothstein/ansible-docker-py)
 
 A role for installing the [Docker bindings for Python](https://docker-py.readthedocs.io/en/stable/). This is necessary for controlling Docker with Ansible.
 
