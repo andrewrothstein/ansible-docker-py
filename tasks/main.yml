@@ -3,28 +3,25 @@
   include_vars: '{{item}}'
   with_first_found:
     - files:
-        - '{{ansible_distribution}}-{{ansible_distribution_release}}.yml'
-        - '{{ansible_distribution}}.yml'
-        - '{{ansible_os_family}}.yml'
+        - '{{ ansible_distribution }}-{{ ansible_distribution_release }}.yml'
+        - '{{ ansible_distribution }}.yml'
+        - '{{ ansible_os_family }}.yml'
       skip: true
       paths:
-        - '{{role_path}}/vars'
+        - '{{ role_path }}/vars'
 
 # https://blog.confirm.ch/docker-ansible-on-rhel-centos-7/
 # silliness for docker-py
 - name: purge docker-python package if present...
   become: yes
   become_user: root
-  with_items: '{{ docker_py_purge|default([]) }}'
   package:
-    name: '{{ item }}'
+    name: '{{ docker_py_purge | default([]) }}'
     state: absent
 
 - name: installing docker-py via pip
   become: yes
   become_user: root
-  with_items:
-    - docker
   pip:
-    name: '{{ item }}'
+    name: docker
     state: present
