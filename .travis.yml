@@ -15,6 +15,7 @@ env:
 - OS=alpine_3.8
 - OS=alpine_3.9
 - OS=alpine_edge
+- OS=archlinux_latest
 - OS=centos_7
 - OS=debian_buster
 - OS=debian_stretch
@@ -22,7 +23,11 @@ env:
 - OS=fedora_24
 - OS=fedora_25
 - OS=fedora_26
-- OS=ubuntu_trusty
+- OS=fedora_27
+- OS=fedora_28
+- OS=fedora_29
+- OS=fedora_30
+- OS=ubuntu_bionic
 - OS=ubuntu_xenial
 language: python
 python: '3.7'
