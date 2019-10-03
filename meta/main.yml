@@ -33,4 +33,4 @@ galaxy_info:
 
 dependencies:
   - role: andrewrothstein.python
-    version: v1.0.10
+    version: v1.0.13
